@@ -15,7 +15,7 @@ class appWidget(QtWidgets.QWidget):
         # initializing the widgets that will be placed in the app window
 
         self.layout = QtWidgets.QVBoxLayout(self)
-        self.layout.setContentsMargins(50, 20, 50, 20)
+        self.layout.setContentsMargins(50, 20, 50, 50)
 
         # labels and the like
 
@@ -43,9 +43,9 @@ class appWidget(QtWidgets.QWidget):
         self.labelsLayout.addItem(self.horizontal_spacer)
         self.labelsLayout.addWidget(self.pcLabel)
 
-        self.userScoreLabel = QtWidgets.QLabel(alignment=QtCore.Qt.AlignLeft)
+        self.userScoreLabel = QtWidgets.QLabel(alignment=QtCore.Qt.AlignVCenter)
         self.userScoreLabel.setNum(self.userScore)
-        self.pcScoreLabel = QtWidgets.QLabel(alignment=QtCore.Qt.AlignRight)
+        self.pcScoreLabel = QtWidgets.QLabel(alignment=QtCore.Qt.AlignVCenter)
         self.pcScoreLabel.setNum(self.pcScore)
 
         self.scoresLayout.addWidget(self.userScoreLabel)
@@ -115,7 +115,7 @@ class appWidget(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     widget = appWidget()
-    widget.resize(1200, 800)
+    widget.resize(800, 600)
     widget.show()
 
     sys.exit(app.exec())
