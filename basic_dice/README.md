@@ -1,0 +1,1 @@
+This is a simple program simulating dice rolls that is also an attempt at exploring and practicing writing python classes.
