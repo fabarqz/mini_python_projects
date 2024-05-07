@@ -16,6 +16,22 @@ class Dice:
                 print(f"Error. {e}. Try again")
 
     @staticmethod
+    def getPair() -> list[int]:
+
+        inputList = [
+            int(item)
+            for item in input(
+                "Enter the dice type you wish to roll followed by the number of rolls separated by a space: "
+            ).split()
+        ]
+        dice_type = inputList[0]
+        number_rolls = inputList[1]
+
+        result_list = Dice.multiple_rolls(dice_type, number_rolls)
+
+        return result_list
+
+    @staticmethod
     def getRolls() -> int:
         number_rolls = int(input("How many times would you like to roll the dice? "))
         return number_rolls
@@ -38,9 +54,11 @@ class Dice:
 
 if __name__ == "__main__":
     dice_instance = Dice()
-    current_dice = dice_instance.getDiceType()
-    number_rolls = dice_instance.getRolls()
-    results = dice_instance.multiple_rolls(current_dice, number_rolls)
-
+    # current_dice = dice_instance.getDiceType()
+    # number_rolls = dice_instance.getRolls()
+    # results = dice_instance.multiple_rolls(current_dice, number_rolls)
     # roll_result = dice_instance.roll(current_dice)
-    print(results)
+
+    dice_results = dice_instance.getPair()
+
+    print(dice_results)
