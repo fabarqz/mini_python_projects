@@ -57,16 +57,20 @@ class appWidget(QtWidgets.QWidget):
         self.buttonRock = QtWidgets.QPushButton("Rock")
         self.buttonPaper = QtWidgets.QPushButton("Paper")
         self.buttonScissors = QtWidgets.QPushButton("Scissors")
+        self.resetButton = QtWidgets.QPushButton("Reset")
+        self.resetButton.setEnabled(False)
 
         self.buttonRock.clicked.connect(lambda: self.player_choice("Rock"))
         self.buttonPaper.clicked.connect(lambda: self.player_choice("Paper"))
         self.buttonScissors.clicked.connect(lambda: self.player_choice("Scissors"))
+        self.resetButton.clicked.connect(lambda: self.resetGame())
 
         self.buttonsLayout.addWidget(self.buttonRock)
         self.buttonsLayout.addWidget(self.buttonPaper)
         self.buttonsLayout.addWidget(self.buttonScissors)
+        self.buttonsLayout.addWidget(self.resetButton)
 
-        # laying down the widgets in the app windown
+        # laying down the widgets in the app window
 
         self.layout.addWidget(self.header1)
         self.layout.addLayout(self.labelsLayout)
@@ -101,6 +105,11 @@ class appWidget(QtWidgets.QWidget):
             self.userScore = 0
             self.pcScore = 0
             result = "Oh no! He's got a gun. You died"
+            self.buttonRock.setEnabled(False)
+            self.buttonPaper.setEnabled(False)
+            self.buttonScissors.setEnabled(False)
+            self.resetButton.setEnabled(True)
+
         else:
             self.pcScore += 1
             result = "You lost!"
@@ -110,6 +119,17 @@ class appWidget(QtWidgets.QWidget):
         self.pcScoreLabel.setNum(self.pcScore)
 
         return result
+
+    def resetGame(self):
+        self.userScore = 0
+        self.pcScore = 0
+        self.statusLabel.setText(
+            "The game has been reset. Cast your choice to start a new game."
+        )
+        self.buttonRock.setEnabled(True)
+        self.buttonPaper.setEnabled(True)
+        self.buttonScissors.setEnabled(True)
+        self.resetButton.setEnabled(False)
 
 
 if __name__ == "__main__":
