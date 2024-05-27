@@ -1,0 +1,2 @@
+
+        widget.setLayout(self.simplediceLayout)
