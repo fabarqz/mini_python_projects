@@ -13,6 +13,10 @@ class Fancy:
         stdout.write("\x1b[2k")
         self.typingEffect(" " * 50)
 
+    def replace_line(self, text):
+        stdout.write("\x1b[1A")
+        self.typingEffect(text)
+
     def typingEffect(self, text):
         for character in text:
             stdout.write(character)
@@ -32,5 +36,6 @@ if __name__ == "__main__":
     sleep(1)
     fancy.printLine("This third line will soon be deleted\n")
     sleep(1)
-    fancy.delete_one_line()
-    fancy.printLine("\nThis a new line")
+    # fancy.delete_one_line()
+    # fancy.printLine("\nThis a new line")
+    fancy.replace_line("This line replaces the previously deleted line")
