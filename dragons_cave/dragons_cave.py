@@ -11,6 +11,12 @@ class Game:
         self.player_name = player_name
         self.player_alive = True
         self.game_text = {
+            "main_menu": {
+                "line_a": f"Greetings {self.player_name}, Choose the number of the action you wish to do below.\n",
+                "line_b": "[1] Learn more about the lore.\n",
+                "line_c": "[2] Learn more about the game mechanics.\n",
+                "line_d": "[1] Start game.\n",
+            },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
                 "line_b": "Each stage splits to up to three paths and you must pick the right path to pass through safely.\n",
@@ -18,7 +24,7 @@ class Game:
                 "line_d": "Thus avoiding confrontation with the sentries as well as avoiding triggering any trap is a must\n",
                 "line_e": "To achieve victory, you must pass through all stages undetected and safe until you reach the dragon king's chamber\n",
                 "line_f": "Only then can you unleash your full strength to finish what the hero has started by putting an end to the dragon king's life and their race's reign of terror\n",
-            }
+            },
         }
 
     def print_banner(self):
@@ -56,16 +62,38 @@ class Game:
         elif keyboard.read_key() == "n":
             self.print_line("Alas. You picked no")
 
+    def print_game_text(self, key):
+        for sub_key, value in self.game_text[key].items():
+            self.print_line(value)
+            sleep(0.075)
+
+    def main_menu(self):
+        self.print_game_text("main_menu")
+        try:
+            if keyboard.read_key() == "1":
+                sleep(0.25)
+                self.clear_terminal()
+                self.print_line("To follow")
+            elif keyboard.read_key() == "2":
+                sleep(0.25)
+                self.roll_mechanics()
+            elif keyboard.read_key == "3":
+                sleep(0.25)
+                self.clear_terminal()
+                self.print_line("To follow")
+            else:
+                raise ValueError("Error! Your choice is not in the option")
+        except ValueError as error:
+            self.print_line(str(error))
+
     def roll_mechanics(self):
-        self.print_line(self.game_text["mechanics_menu"].get("line_a"))
-        sleep(0.075)
-        self.print_line(self.game_text["mechanics_menu"].get("line_b"))
-        sleep(0.075)
+        self.print_game_text("mechanics_menu")
 
     def play_game(self):
         self.game_intro()
         sleep(0.05)
-        self.ask_mechanics()
+        # self.ask_mechanics()
+        self.main_menu()
 
 
 if __name__ == "__main__":
