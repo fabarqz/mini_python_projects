@@ -15,7 +15,7 @@ class Game:
                 "line_a": f"Greetings {self.player_name}, Choose the number of the action you wish to do below.\n",
                 "line_b": "[1] Learn more about the lore.\n",
                 "line_c": "[2] Learn more about the game mechanics.\n",
-                "line_d": "[1] Start game.\n",
+                "line_d": "[3] Start game.\n",
             },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
@@ -25,7 +25,18 @@ class Game:
                 "line_e": "To achieve victory, you must pass through all stages undetected and safe until you reach the dragon king's chamber\n",
                 "line_f": "Only then can you unleash your full strength to finish what the hero has started by putting an end to the dragon king's life and their race's reign of terror\n",
             },
+            "ask": {"return_menu": "Do you wish to return to the main menu?"},
         }
+
+    def clear_keyboard(self):
+        while (
+            keyboard._recording
+        ):  # Use an internal flag to check if events are being recorded
+            try:
+                event = keyboard.read_event(suppress=True)
+            except:
+                break  # Break the loop if no more events are available
+        sleep(0.01)
 
     def print_banner(self):
         self.banner = pyfiglet.figlet_format("Dragon's Dead End ", font="digital")
@@ -45,6 +56,7 @@ class Game:
     def ask_yes_no(self):
         if keyboard.read_key() == "y":
             self.print_line("You have chosen yes")
+            keyboard.clearEvents()
         elif keyboard.read_key() == "n":
             self.print_line("Alas. You picked no")
 
@@ -58,8 +70,27 @@ class Game:
     def ask_mechanics(self):
         self.print_line(f"Do you wish to hear the mechanics, Sir {self.player_name}?\n")
         if keyboard.read_key() == "y":
+            self.clear_keyboard()
             self.roll_mechanics()
+
         elif keyboard.read_key() == "n":
+            self.clear_keyboard()
+            self.print_line("Alas. You picked no")
+
+    def choice_lore(self):
+        self.clear_keyboard()
+        self.print_line("To follow")
+        sleep(0.25)
+        self.ask_return_menu()
+
+    def ask_return_menu(self):
+        self.clear_terminal()
+        self.print_line(self.game_text["ask"].get("return_menu"))
+        if keyboard.read_key() == "y":
+            self.clear_keyboard()
+            self.main_menu()
+        elif keyboard.read_key() == "n":
+            self.clear_keyboard()
             self.print_line("Alas. You picked no")
 
     def print_game_text(self, key):
@@ -68,25 +99,34 @@ class Game:
             sleep(0.075)
 
     def main_menu(self):
+        self.clear_keyboard()
+        self.clear_terminal()
         self.print_game_text("main_menu")
-        try:
-            if keyboard.read_key() == "1":
-                sleep(0.25)
-                self.clear_terminal()
-                self.print_line("To follow")
-            elif keyboard.read_key() == "2":
-                sleep(0.25)
-                self.roll_mechanics()
-            elif keyboard.read_key == "3":
-                sleep(0.25)
-                self.clear_terminal()
-                self.print_line("To follow")
-            else:
-                raise ValueError("Error! Your choice is not in the option")
-        except ValueError as error:
-            self.print_line(str(error))
+        correct_input = False
+        while not correct_input:
+            try:
+                if keyboard.read_key() == "1":
+                    sleep(0.25)
+                    self.choice_lore()
+
+                elif keyboard.read_key() == "2":
+                    sleep(0.25)
+                    self.clear_keyboard()
+                    self.roll_mechanics()
+                    correct_input = True
+                elif keyboard.read_key() == "3":
+                    sleep(0.25)
+                    self.clear_keyboard()
+                    self.clear_terminal()
+                    self.print_line("To follow")
+                    correct_input = True
+                else:
+                    raise ValueError("Error! Your choice is not in the option\n")
+            except ValueError as error:
+                self.print_line(str(error))
 
     def roll_mechanics(self):
+        self.clear_terminal()
         self.print_game_text("mechanics_menu")
 
     def play_game(self):
