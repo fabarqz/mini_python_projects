@@ -1,5 +1,5 @@
 from os import system
-from sys import stdout
+from sys import stdout, stdin
 from time import sleep
 from pynput import keyboard as board
 import keyboard
@@ -17,6 +17,11 @@ class Game:
                 "line_c": "[2] Learn more about the game mechanics.\n",
                 "line_d": "[3] Start game.\n",
             },
+            "lore_menu": {
+                "line_a": "",
+                "line_b": "",
+                "line_c": "",
+            },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
                 "line_b": "Each stage splits to up to three paths and you must pick the right path to pass through safely.\n",
@@ -29,13 +34,7 @@ class Game:
         }
 
     def clear_keyboard(self):
-        while (
-            keyboard._recording
-        ):  # Use an internal flag to check if events are being recorded
-            try:
-                event = keyboard.read_event(suppress=True)
-            except:
-                break  # Break the loop if no more events are available
+        stdin.flush()
         sleep(0.01)
 
     def print_banner(self):
