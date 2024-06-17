@@ -17,10 +17,13 @@ class Game:
                 "line_c": "[2] Learn more about the game mechanics.\n",
                 "line_d": "[3] Start game.\n",
             },
-            "lore_menu": {
-                "line_a": "",
-                "line_b": "",
-                "line_c": "",
+            "lore_menu_dragon": {
+                "line_a": "The ancient dragon race have lived on this planet far longer than the rest of the sapient species.",
+                "line_b": "Despite their immortality and immense power, they are rather aloof. Most often opt to laze around enjoying the scenic view from the highest of peaks away from the then developing civilizations of humans, elves and dwarves",
+                "line_c": "However that would all soon change when the dragon named Vol was born. Unbeknown to all, this young whelp would become the most ambitious being to exist throughout history. ",
+                "line_d": "Through nefarious schemes and violent means, he gained unparalleled power and crown himself as king of the dragons, Volgrell.",
+                "line_e": "Those who shared the same bloodthirsty predisposition as him followed willingly while the rest of his kin either submitted unwillingly or die in vain resistance.",
+                "line_f": "The dragon king would lead an army of his kin along with the demonic races they've enslaved to conquer the rest of the world.",
             },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
@@ -123,6 +126,38 @@ class Game:
                     raise ValueError("Error! Your choice is not in the option\n")
             except ValueError as error:
                 self.print_line(str(error))
+
+        def main_menu_options(self):
+            self.clear_keyboard()
+            self.clear_terminal()
+            self.print_game_text("main_menu")
+            correct_input = False
+
+            # rework idea - use try except block to handle input looping until valid input is placed
+            # then create a function call that takes the choice as parameter and execute the chosen option accordingly
+
+            while not correct_input:
+                try:
+                    choice = input()
+                    if choice == "1":
+                        sleep(0.25)
+                        self.choice_lore()
+
+                    elif keyboard.read_key() == "2":
+                        sleep(0.25)
+                        self.clear_keyboard()
+                        self.roll_mechanics()
+                        correct_input = True
+                    elif keyboard.read_key() == "3":
+                        sleep(0.25)
+                        self.clear_keyboard()
+                        self.clear_terminal()
+                        self.print_line("To follow")
+                        correct_input = True
+                    else:
+                        raise ValueError("Error! Your choice is not in the option\n")
+                except ValueError as error:
+                    self.print_line(str(error))
 
     def roll_mechanics(self):
         self.clear_terminal()
