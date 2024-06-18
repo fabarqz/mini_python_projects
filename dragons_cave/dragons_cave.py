@@ -85,7 +85,17 @@ class Game:
         sleep(0.25)
         self.ask_return_menu()
 
-    def ask_return_menu(self):
+    def ask_return_menu_alt(self):
+        self.clear_terminal()
+        self.print_line(self.game_text["ask"].get("return_menu"))
+        if keyboard.read_key() == "y":
+            self.clear_keyboard()
+            self.main_menu()
+        elif keyboard.read_key() == "n":
+            self.clear_keyboard()
+            self.print_line("Alas. You picked no")
+
+    def ask_return_menu_(self):
         self.clear_terminal()
         self.print_line(self.game_text["ask"].get("return_menu"))
         if keyboard.read_key() == "y":
@@ -100,7 +110,7 @@ class Game:
             self.print_line(value)
             sleep(0.075)
 
-    def main_menu(self):
+    def main_menu_alt(self):
         self.clear_keyboard()
         self.clear_terminal()
         self.print_game_text("main_menu")
@@ -127,37 +137,36 @@ class Game:
             except ValueError as error:
                 self.print_line(str(error))
 
-        def main_menu_options(self):
-            self.clear_keyboard()
+    def main_menu(self):
+        self.clear_keyboard()
+        self.clear_terminal()
+        self.print_game_text("main_menu")
+        while True:
+            user_menu_choice = int(input("The choice is "))
+            try:
+                if user_menu_choice in {1, 2, 3}:
+                    break
+                else:
+                    raise ValueError("Input Error. Try again.")
+            except ValueError as error:
+                self.print_line(str(error))
+        self.run_menu_choice(user_menu_choice)
+
+    def run_menu_choice(self, choice):
+        if choice == 1:
+            sleep(0.25)
             self.clear_terminal()
-            self.print_game_text("main_menu")
-            correct_input = False
+            self.choice_lore()
 
-            # rework idea - use try except block to handle input looping until valid input is placed
-            # then create a function call that takes the choice as parameter and execute the chosen option accordingly
+        elif choice == 2:
+            sleep(0.25)
+            self.clear_terminal()
+            self.roll_mechanics()
 
-            while not correct_input:
-                try:
-                    choice = input()
-                    if choice == "1":
-                        sleep(0.25)
-                        self.choice_lore()
-
-                    elif keyboard.read_key() == "2":
-                        sleep(0.25)
-                        self.clear_keyboard()
-                        self.roll_mechanics()
-                        correct_input = True
-                    elif keyboard.read_key() == "3":
-                        sleep(0.25)
-                        self.clear_keyboard()
-                        self.clear_terminal()
-                        self.print_line("To follow")
-                        correct_input = True
-                    else:
-                        raise ValueError("Error! Your choice is not in the option\n")
-                except ValueError as error:
-                    self.print_line(str(error))
+        elif choice == 3:
+            sleep(0.25)
+            self.clear_terminal()
+            self.print_line("To follow")
 
     def roll_mechanics(self):
         self.clear_terminal()
