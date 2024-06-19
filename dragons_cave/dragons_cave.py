@@ -18,12 +18,11 @@ class Game:
                 "line_d": "[3] Start game.\n",
             },
             "lore_menu_dragon": {
-                "line_a": "The ancient dragon race have lived on this planet far longer than the rest of the sapient species.",
-                "line_b": "Despite their immortality and immense power, they are rather aloof. Most often opt to laze around enjoying the scenic view from the highest of peaks away from the then developing civilizations of humans, elves and dwarves",
-                "line_c": "However that would all soon change when the dragon named Vol was born. Unbeknown to all, this young whelp would become the most ambitious being to exist throughout history. ",
-                "line_d": "Through nefarious schemes and violent means, he gained unparalleled power and crown himself as king of the dragons, Volgrell.",
-                "line_e": "Those who shared the same bloodthirsty predisposition as him followed willingly while the rest of his kin either submitted unwillingly or die in vain resistance.",
-                "line_f": "The dragon king would lead an army of his kin along with the demonic races they've enslaved to conquer the rest of the world.",
+                "line_a": "Three thousand years ago, a dragon whelp named Vol would came into being.\n",
+                "line_b": "Unbeknownst to all, this young dragon turns out to be the most ambitious and vile existence to walk the land\n",
+                "line_c": "Through walking a path of bloodshed and violence, the dragon race was reduced from a majestic beings respected by all to an army that carry out his tyrannical will",
+                "line_d": "He would soon change his name from Vol to Volgrand and naming himself as the Dragon King.",
+                "line_f": "As dragon king, his first edict is to wage war against the rest of the world. Through his will, dragons soared through the skies wreaking havoc and enslaving the other races they defeated",
             },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
@@ -81,7 +80,7 @@ class Game:
 
     def choice_lore(self):
         self.clear_keyboard()
-        self.print_line("To follow")
+        self.roll_lore()
         sleep(0.25)
         self.ask_return_menu()
 
@@ -95,15 +94,17 @@ class Game:
             self.clear_keyboard()
             self.print_line("Alas. You picked no")
 
-    def ask_return_menu_(self):
+    def ask_return_menu(self):
         self.clear_terminal()
         self.print_line(self.game_text["ask"].get("return_menu"))
-        if keyboard.read_key() == "y":
-            self.clear_keyboard()
-            self.main_menu()
-        elif keyboard.read_key() == "n":
-            self.clear_keyboard()
-            self.print_line("Alas. You picked no")
+        while True:
+            return_choice = input("\nYour choice is (y or n) ").strip().lower()
+            if return_choice == "y":
+                self.clear_keyboard()
+                self.main_menu()
+            elif return_choice == "n":
+                self.clear_keyboard()
+                self.print_line("Alas. You picked no")
 
     def print_game_text(self, key):
         for sub_key, value in self.game_text[key].items():
@@ -171,6 +172,10 @@ class Game:
     def roll_mechanics(self):
         self.clear_terminal()
         self.print_game_text("mechanics_menu")
+
+    def roll_lore(self):
+        self.clear_terminal()
+        self.print_game_text("lore_menu_dragon")
 
     def play_game(self):
         self.game_intro()
