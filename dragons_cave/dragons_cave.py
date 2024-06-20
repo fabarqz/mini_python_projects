@@ -17,6 +17,12 @@ class Game:
                 "line_c": "[2] Learn more about the game mechanics.\n",
                 "line_d": "[3] Start game.\n",
             },
+            "lore_menu": {
+                "line_a": "Choose below which lore topic do you wish to learn more of:",
+                "line_b": "[1] On Volgrand",
+                "line_c": "[2] On Abelion",
+                "line_d": "[3] On The Hidden Blade Order",
+            },
             "lore_menu_dragon": {
                 "line_a": "Three thousand years ago, a dragon whelp named Vol would came into being.\n",
                 "line_b": "Unbeknownst to all, this young dragon turns out to be the most ambitious and vile existence to walk the land\n",
@@ -153,7 +159,38 @@ class Game:
                 self.print_line(str(error))
         self.run_menu_choice(user_menu_choice)
 
+    def lore_menu(self):
+        self.clear_keyboard()
+        self.clear_terminal()
+        self.print_game_text("lore_menu")
+        while True:
+            user_menu_choice = int(input("The choice is "))
+            try:
+                if user_menu_choice in {1, 2, 3}:
+                    break
+                else:
+                    raise ValueError("Input Error. Try again.")
+            except ValueError as error:
+                self.print_line(str(error))
+        self.run_lore_choice(user_menu_choice)
+
     def run_menu_choice(self, choice):
+        if choice == 1:
+            sleep(0.25)
+            self.clear_terminal()
+            self.lore_menu()
+
+        elif choice == 2:
+            sleep(0.25)
+            self.clear_terminal()
+            self.roll_mechanics()
+
+        elif choice == 3:
+            sleep(0.25)
+            self.clear_terminal()
+            self.print_line("To follow")
+
+    def run_lore_choice(self, choice):
         if choice == 1:
             sleep(0.25)
             self.clear_terminal()
