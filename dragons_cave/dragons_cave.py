@@ -4,12 +4,18 @@ from time import sleep
 from pynput import keyboard as board
 import keyboard
 import pyfiglet
+import random
 
 
 class Game:
     def __init__(self, player_name):
         self.player_name = player_name
+
         self.player_alive = True
+        self.player_alive = True
+
+        self.dungeon_soluition = self.generate_dungeon()
+
         self.game_text = {
             "main_menu": {
                 "line_a": f"Greetings {self.player_name}, Choose the number of the action you wish to do below.\n",
@@ -30,6 +36,9 @@ class Game:
                 "line_d": "Through walking a path of bloodshed and violence, the dragon race was reduced from a majestic beings respected by all to an army that carry out his tyrannical will",
                 "line_e": "His prismatic black scales would soon be tainted with red streaks glowing ominously. He then would change his name from Vol to Volgrand and naming himself as the Dragon King.",
                 "line_f": "As dragon king, his first edict is to wage war against the rest of the world. Through his will, dragons soared through the skies wreaking havoc and enslaving the other races they defeated",
+            },
+            "lore_menu_hero": {
+                "line_a": "Though Volgrand's bloody campaign for conquest nearly wiped out everyone off the face of the planet, the rest of the races the tyrannical dragon king viewed as inferior didn't back down without a fight\n",
             },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
@@ -220,6 +229,11 @@ class Game:
         sleep(0.05)
         # self.ask_mechanics()
         self.main_menu()
+
+    def generate_dungeon(self):
+        chambers = ["left", "middle", "right"]
+        dungeon_solution = [random.choice(chambers) for x in range(self.stages)]
+        return dungeon_solution
 
 
 if __name__ == "__main__":
