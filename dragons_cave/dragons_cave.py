@@ -14,7 +14,9 @@ class Game:
         self.player_alive = True
         self.player_alive = True
 
-        self.dungeon_soluition = self.generate_dungeon()
+        self.debug_enabled = False
+        self.stages = self.generate_stages()
+        self.dungeon_solution = self.generate_dungeon()
 
         self.game_text = {
             "main_menu": {
@@ -159,9 +161,9 @@ class Game:
         self.clear_terminal()
         self.print_game_text("main_menu")
         while True:
-            user_menu_choice = int(input("The choice is "))
+            user_menu_choice = input("The choice is ")
             try:
-                if user_menu_choice in {1, 2, 3}:
+                if user_menu_choice in {"1", "2", "3", "debug"}:
                     break
                 else:
                     raise ValueError("Input Error. Try again.")
@@ -185,20 +187,25 @@ class Game:
         self.run_lore_choice(user_menu_choice)
 
     def run_menu_choice(self, choice):
-        if choice == 1:
+        if choice == "1":
             sleep(0.25)
             self.clear_terminal()
             self.lore_menu()
 
-        elif choice == 2:
+        elif choice == "2":
             sleep(0.25)
             self.clear_terminal()
             self.roll_mechanics()
 
-        elif choice == 3:
+        elif choice == "3":
             sleep(0.25)
             self.clear_terminal()
             self.print_line("To follow")
+
+        elif choice == "debug":
+            sleep(0.25)
+            self.print_line("debug mode enabled")
+            self.debug_enabled = True
 
     def run_lore_choice(self, choice):
         if choice == 1:
@@ -229,6 +236,9 @@ class Game:
         sleep(0.05)
         # self.ask_mechanics()
         self.main_menu()
+
+    def generate_stages(self):
+        return random.randint(4, 12)
 
     def generate_dungeon(self):
         chambers = ["left", "middle", "right"]
