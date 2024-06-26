@@ -61,6 +61,8 @@ class Game:
         self.banner = pyfiglet.figlet_format("Dragon's Dead End ", font="digital")
         self.banner_count = self.banner.count("\n") + 1
         print(self.banner)
+        if self.debug_enabled == True:
+            print(self.dungeon_solution)
 
     def clear_terminal(self):
         print("\033c", end="")
@@ -206,6 +208,7 @@ class Game:
             sleep(0.25)
             self.print_line("debug mode enabled")
             self.debug_enabled = True
+            self.ask_return_menu()
 
     def run_lore_choice(self, choice):
         if choice == 1:
@@ -242,8 +245,8 @@ class Game:
 
     def generate_dungeon(self):
         chambers = ["left", "middle", "right"]
-        dungeon_solution = [random.choice(chambers) for x in range(self.stages)]
-        return dungeon_solution
+        self.dungeon_solution = [random.choice(chambers) for x in range(self.stages)]
+        return self.dungeon_solution
 
 
 if __name__ == "__main__":
