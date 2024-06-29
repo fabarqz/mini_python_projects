@@ -51,6 +51,13 @@ class Game:
                 "line_f": "Only then can you unleash your full strength to finish what the hero has started by putting an end to the dragon king's life and their race's reign of terror\n",
             },
             "ask": {"return_menu": "Do you wish to return to the main menu?"},
+            "defeat": {
+                "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
+                "line_b": "You died! A sentry hiding in the dark out of your sight struck you in the back piercing through your heart with its spear-like tail\n",
+                "line_c": "The moment you step into the chamber the dark interior suddenly got bright as a ball of fire flies towards you. You were unable to dodge thus got incinerated to ashes\n",
+                "line_d": "Alas you were killed by a ceiling made of spikes fall on top you\n",
+                "line_e": "Alas before you could get inside the chamber, a dragon sentry pops out of the dark with it maws wide open devouring you\n",
+            },
         }
 
     def clear_keyboard(self):
@@ -202,7 +209,7 @@ class Game:
         elif choice == "3":
             sleep(0.25)
             self.clear_terminal()
-            self.print_line("To follow")
+            self.game_loop()
 
         elif choice == "debug":
             sleep(0.25)
@@ -240,6 +247,11 @@ class Game:
         # self.ask_mechanics()
         self.main_menu()
 
+    def game_loop(self):
+        self.clear_terminal()
+        sleep(0.05)
+        self.dungeon_loop()
+
     def generate_stages(self):
         return random.randint(4, 12)
 
@@ -247,6 +259,58 @@ class Game:
         chambers = ["left", "middle", "right"]
         self.dungeon_solution = [random.choice(chambers) for x in range(self.stages)]
         return self.dungeon_solution
+
+    def get_choice(self, solution):
+        try:
+            if solution in ("left", "right"):
+                chamber = (
+                    input(
+                        "The path before you splits into two, will you take the left or right path?"
+                    )
+                    .strip()
+                    .lower()
+                )
+                if chamber not in ["left", "right", "Left", "Right"]:
+                    raise ValueError(
+                        "Invalid input. You can only pick between left and right"
+                    )
+            elif solution == "middle":
+                chamber = (
+                    input(
+                        "The path before you splits into three, will you take the left,middle or right path?"
+                    )
+                    .strip()
+                    .lower()
+                )
+                if chamber not in [
+                    "left",
+                    "right",
+                    "Left",
+                    "Right",
+                    "middle",
+                    "Middle",
+                ]:
+                    raise ValueError(
+                        "Invalid input. You can only pick either left ,middle or right"
+                    )
+            return chamber
+        except ValueError as e:
+            print(e)
+
+    def dungeon_loop(self):
+        current_dungeon = self.dungeon_solution
+        for level in current_dungeon:
+            if not self.player_alive:
+                break
+            chosen_chamber = self.get_choice(level)
+            if chosen_chamber == level:
+                self.print_line(
+                    "You picked the correct path so you can proceed further"
+                )
+            else:
+                self.print_line("You died")
+                self.player_alive = False
+                break
 
 
 if __name__ == "__main__":
