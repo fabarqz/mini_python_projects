@@ -58,6 +58,9 @@ class Game:
                 "line_d": "Alas you were killed by a ceiling made of spikes fall on top you\n",
                 "line_e": "Alas before you could get inside the chamber, a dragon sentry pops out of the dark with it maws wide open devouring you\n",
             },
+            "pass_safely": {
+                "line_a": "While the foreboding air is there, this room is oddly devoid of traps nor is there a sentry patrolling. Nevertheless, you maintain your guard and carefully walk towards the exit.\n",
+            },
         }
 
     def clear_keyboard(self):
@@ -297,6 +300,11 @@ class Game:
         except ValueError as e:
             print(e)
 
+    def get_random_defeat(self):
+        defeat_messages = self.game_text["defeat"]
+        random_key = random.choice(list(defeat_messages.keys()))
+        return defeat_messages[random_key]
+
     def dungeon_loop(self):
         current_dungeon = self.dungeon_solution
         for level in current_dungeon:
@@ -308,7 +316,7 @@ class Game:
                     "You picked the correct path so you can proceed further"
                 )
             else:
-                self.print_line("You died")
+                self.print_line(self.get_random_defeat())
                 self.player_alive = False
                 break
 
