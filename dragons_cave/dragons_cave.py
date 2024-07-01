@@ -60,6 +60,8 @@ class Game:
             },
             "pass_safely": {
                 "line_a": "While the foreboding air is there, this room is oddly devoid of traps nor is there a sentry patrolling. Nevertheless, you maintain your guard and carefully walk towards the exit.\n",
+                "line_b": "You traversed through the dark chamber safely. It is however not without hardship as you have to carefully walk so as to not trip any of the pressure plates scattered about the room.\n ",
+                "line_c": "There doesn't seem to be any form of traps in this room. However you hear faint draconic growls echoing through the hall. It must be coming from the other chambers. You proceed to traverse the room with haste ensuring to not make a noise that would alert the sentry of your presence.\n",
             },
         }
 
@@ -305,6 +307,11 @@ class Game:
         random_key = random.choice(list(defeat_messages.keys()))
         return defeat_messages[random_key]
 
+    def get_random_pass(self):
+        pass_messages = self.game_text["pass_safely"]
+        random_key = random.choice(list(pass_messages.keys()))
+        return pass_messages[random_key]
+
     def dungeon_loop(self):
         current_dungeon = self.dungeon_solution
         for level in current_dungeon:
@@ -312,9 +319,7 @@ class Game:
                 break
             chosen_chamber = self.get_choice(level)
             if chosen_chamber == level:
-                self.print_line(
-                    "You picked the correct path so you can proceed further"
-                )
+                self.print_line(self.get_random_pass())
             else:
                 self.print_line(self.get_random_defeat())
                 self.player_alive = False
