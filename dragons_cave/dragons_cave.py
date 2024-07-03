@@ -127,6 +127,10 @@ class Game:
             self.print_line("Alas. You picked no")
 
     def ask_return_menu(self):
+        self.player_alive = True
+        self.stages = self.generate_stages()
+        self.dungeon_solution = self.generate_dungeon()
+
         self.clear_terminal()
         self.print_line(self.game_text["ask"].get("return_menu"))
         while True:
@@ -282,7 +286,7 @@ class Game:
             elif solution == "middle":
                 chamber = (
                     input(
-                        "The path before you splits into three, will you take the left,middle or right path?"
+                        "The path before you splits into three, will you take the left,middle or right path? "
                     )
                     .strip()
                     .lower()
@@ -316,14 +320,14 @@ class Game:
         current_dungeon = self.dungeon_solution
         for level in current_dungeon:
             if not self.player_alive:
-                break
+                self.print_line("Alas! You have died.")
+                self.ask_return_menu()
             chosen_chamber = self.get_choice(level)
             if chosen_chamber == level:
                 self.print_line(self.get_random_pass())
             else:
                 self.print_line(self.get_random_defeat())
                 self.player_alive = False
-                break
 
 
 if __name__ == "__main__":
