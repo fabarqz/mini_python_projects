@@ -51,6 +51,12 @@ class Game:
                 "line_f": "Only then can you unleash your full strength to finish what the hero has started by putting an end to the dragon king's life and their race's reign of terror\n",
             },
             "ask": {"return_menu": "Do you wish to return to the main menu?"},
+            "game_start": {
+                "line_a": "The end of the Volgrand's tyrannical rule nigh.\n",
+                "line_b": "But alas, it would seem the evil dragon still has its clutches over its fate and refusing to go down to the very end.\n",
+                "line_c": "Despite giving his all, the Hero Orland failed to kill the dragon king.\n",
+                "line_d": "To add salt to the injury, the dragon used the confusion caused by the hero collapsing after unleashing the attack that was supposed to kill him to make a cowardly escape.\n",
+            },
             "defeat": {
                 "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
                 "line_b": "You died! A sentry hiding in the dark out of your sight struck you in the back piercing through your heart with its spear-like tail\n",
