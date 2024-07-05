@@ -152,7 +152,9 @@ class Game:
                 self.main_menu()
             elif return_choice == "n":
                 self.clear_keyboard()
-                self.print_line("Alas. You picked no")
+                self.print_line("Alas. You picked no. Closing app")
+                sleep(0.5)
+                break
 
     def print_game_text(self, key):
         for sub_key, value in self.game_text[key].items():
@@ -290,25 +292,19 @@ class Game:
     def get_choice(self, solution):
         try:
             if solution in ("left", "right"):
-                chamber = (
-                    input(
-                        "The path before you splits into two, will you take the left or right path?"
-                    )
-                    .strip()
-                    .lower()
+                self.print_line(
+                    "The path before you splits into two, will you take the left or right path? "
                 )
+                chamber = input().strip().lower()
                 if chamber not in ["left", "right", "Left", "Right"]:
                     raise ValueError(
                         "Invalid input. You can only pick between left and right"
                     )
             elif solution == "middle":
-                chamber = (
-                    input(
-                        "The path before you splits into three, will you take the left,middle or right path? "
-                    )
-                    .strip()
-                    .lower()
+                self.print_line(
+                    "The path before you splits into three, will you take the left,middle or right path? "
                 )
+                chamber = input().strip().lower()
                 if chamber not in [
                     "left",
                     "right",
