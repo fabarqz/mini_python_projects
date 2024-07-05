@@ -52,10 +52,16 @@ class Game:
             },
             "ask": {"return_menu": "Do you wish to return to the main menu?"},
             "game_start": {
-                "line_a": "The end of the Volgrand's tyrannical rule nigh.\n",
+                "line_a": "The end of the Volgrand's tyrannical rule is nigh.\n",
                 "line_b": "But alas, it would seem the evil dragon still has its clutches over its fate and refusing to go down to the very end.\n",
                 "line_c": "Despite giving his all, the Hero Orland failed to kill the dragon king.\n",
-                "line_d": "To add salt to the injury, the dragon used the confusion caused by the hero collapsing after unleashing the attack that was supposed to kill him to make a cowardly escape.\n",
+                "line_d": "To add salt to the injury, the dragon used the confusion caused by the hero collapsing after unleashing the attack that was supposed to kill him to make a cowardly escape instead.\n",
+                "line_e": "Almost all of Volgrand's forces have been defeated, leaving the tyrannical dragon the only thing left threatening this world.\n",
+                "line_f": "But he is Volgrand, the strongest being that sent the world into chaos for three thousand years.\n",
+                "line_g": "He can and will regain the powers he lost in its war against the Hero and the Alliance. As to when, only he can know\n",
+                "line_h": "As such this was less of a victory on the Alliance side and more of a stalemate. Both the hero and the evil dragon are out of commission\n",
+                "line_i": f"This is where your part comes, Ser {self.player_name}. As the sole survivor of the Hidden Blade Order, you are commissioned to seek out where Volgrand is hiding\n",
+                "line_j": "It's a perilous task for sure, but you have no qualms taking it. After all, you are the alliance's next best weapon after the Hero for this war\n",
             },
             "defeat": {
                 "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
@@ -224,7 +230,8 @@ class Game:
         elif choice == "3":
             sleep(0.25)
             self.clear_terminal()
-            self.game_loop()
+            self.roll_start_text()
+            # self.game_loop()
 
         elif choice == "debug":
             sleep(0.25)
@@ -255,6 +262,11 @@ class Game:
     def roll_lore(self):
         self.clear_terminal()
         self.print_game_text("lore_menu_dragon")
+
+    def roll_start_text(self):
+        self.clear_terminal()
+        self.print_game_text("game_start")
+        self.game_loop()
 
     def play_game(self):
         self.game_intro()
