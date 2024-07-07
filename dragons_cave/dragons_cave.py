@@ -61,7 +61,11 @@ class Game:
                 "line_g": "He can and will regain the powers he lost in its war against the Hero and the Alliance. As to when, only he can know\n",
                 "line_h": "As such this was less of a victory on the Alliance side and more of a stalemate. Both the hero and the evil dragon are out of commission\n",
                 "line_i": f"This is where your part comes, Ser {self.player_name}. As the sole survivor of the Hidden Blade Order, you are commissioned to seek out where Volgrand is hiding\n",
-                "line_j": "It's a perilous task for sure, but you have no qualms taking it. After all, you are the alliance's next best weapon after the Hero for this war\n",
+                "line_j": "This is a perilous task only known to the higher ups in the Alliance. \n",
+                "line_k": "You find yourself before the entrance of a great ancient ruins far south of the Royal Kingdom of Algon.\n",
+                "line_l": "It has yet to be named but according to the mages you met before setting of for this mission it must predate even the conquest of Volgrand.\n",
+                "line_m": "History aside. There's nothing stationed at the door but the ominous aura emitted by the draconic beings though faint can be felt deep within the ruins.\n",
+                "line_n": "",
             },
             "defeat": {
                 "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
