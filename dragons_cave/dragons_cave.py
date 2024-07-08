@@ -65,7 +65,7 @@ class Game:
                 "line_k": "You find yourself before the entrance of a great ancient ruins far south of the Royal Kingdom of Algon.\n",
                 "line_l": "It has yet to be named but according to the mages you met before setting of for this mission it must predate even the conquest of Volgrand.\n",
                 "line_m": "History aside. There's nothing stationed at the door but the ominous aura emitted by the draconic beings though faint can be felt deep within the ruins.\n",
-                "line_n": "",
+                "line_n": "Wasting no time, you proceed to enter the ruins with great determination to end this as well as a greater caution to slip through the guards and avoid traps.\n",
             },
             "defeat": {
                 "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
