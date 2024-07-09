@@ -41,6 +41,11 @@ class Game:
             },
             "lore_menu_hero": {
                 "line_a": "Though Volgrand's bloody campaign for conquest nearly wiped out everyone off the face of the planet, the rest of the races the tyrannical dragon king viewed as inferior didn't back down without a fight\n",
+                "line_b": "The once separated races managed to unite forming an alliance despite its very shaky foundation.",
+                "line_c": "It was spearheaded by the Humans, Elves, and Dwarves by virtue of being the most populous races",
+                "line_d": "They would later be joined by the other smallfolk such as gnomes, hobbits, and halflings\n",
+                "line_e": "Almost half of the beastmen races who escaped the enslavement of Volgrand's Army.\n",
+                "line_c": "The various merfolk and the descendants of the spirits, Fae",
             },
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
@@ -65,7 +70,8 @@ class Game:
                 "line_k": "You find yourself before the entrance of a great ancient ruins far south of the Royal Kingdom of Algon.\n",
                 "line_l": "It has yet to be named but according to the mages you met before setting of for this mission it must predate even the conquest of Volgrand.\n",
                 "line_m": "History aside. There's nothing stationed at the door but the ominous aura emitted by the draconic beings though faint can be felt deep within the ruins.\n",
-                "line_n": "Wasting no time, you proceed to enter the ruins with great determination to end this as well as a greater caution to slip through the guards and avoid traps.\n",
+                "line_n": "Wasting no time, you proceed to enter the ruins with great determination to end this.\n",
+                "line_o": "The ruins is shrouded in darkness but you as a Hidden Blade you should be able to manage to traverse the however many chambers separating you and the dragon.\n",
             },
             "defeat": {
                 "line_a": "Alas! You were caught by a sentry delivering a swift slash splitting your body into two\n",
