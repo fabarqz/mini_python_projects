@@ -39,14 +39,15 @@ class Game:
                 "line_e": "His prismatic black scales would soon be tainted with red streaks glowing ominously. He then would change his name from Vol to Volgrand and naming himself as the Dragon King.",
                 "line_f": "As dragon king, his first edict is to wage war against the rest of the world. Through his will, dragons soared through the skies wreaking havoc and enslaving the other races they defeated",
             },
-            "lore_menu_hero": {
-                "line_a": "Though Volgrand's bloody campaign for conquest nearly wiped out everyone off the face of the planet, the rest of the races the tyrannical dragon king viewed as inferior didn't back down without a fight\n",
-                "line_b": "The once separated races managed to unite forming an alliance despite its very shaky foundation.",
+            "lore_menu_alliance": {
+                "line_a": "Though Volgrand's bloody campaign for conquest nearly wiped out everyone off the face of the planet, the rest of the races the tyrannical dragon king viewed as inferior didn't back down resisted his forces\n",
+                "line_b": "The once separated races eventually managed to unite forming an alliance despite its very shaky foundation.\n",
                 "line_c": "It was spearheaded by the Humans, Elves, and Dwarves by virtue of being the most populous races",
                 "line_d": "They would later be joined by the other smallfolk such as gnomes, hobbits, and halflings\n",
                 "line_e": "Almost half of the beastmen races who escaped the enslavement of Volgrand's Army.\n",
-                "line_c": "The various merfolk and the descendants of the spirits, Fae",
+                "line_c": "The various merfolk and the descendants of the spirits, Fae would join this alliance last.\n",
             },
+            "lore_menu_hero": {},
             "mechanics_menu": {
                 "line_a": "The path between you and the enemy is divided into a random number of stages.\n",
                 "line_b": "Each stage splits to up to three paths and you must pick the right path to pass through safely.\n",
