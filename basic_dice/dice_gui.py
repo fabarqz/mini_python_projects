@@ -1,3 +1,6 @@
+# Last change is to add text box in Ezgamba that acceots bet.
+
+
 import sys
 import random
 from PySide6 import QtCore, QtWidgets, QtGui
@@ -137,6 +140,8 @@ class appWidget(QtWidgets.QWidget):
     def ezgambaMode(self):
         # EZ Gamba variables
         self.availableCash = 10000
+        self.currentBet = 0
+        intOnly = QtGui.QIntValidator(1, 9999)
 
         ezgambaWidget = QtWidgets.QWidget()
         self.ezgambaLayout = QtWidgets.QVBoxLayout(self)
@@ -149,6 +154,10 @@ class appWidget(QtWidgets.QWidget):
         self.ezgambaCash = QtWidgets.QLabel(str(self.availableCash))
         self.ezgambaLayout.addWidget(ezgambatitle)
         self.ezgambaLayout.addWidget(self.ezgambaCash)
+
+        self.inputBet = QtWidgets.QLineEdit()
+        self.inputBet.setValidator(intOnly)
+        self.ezgambaLayout.addWidget(self.inputBet)
 
         ezgambaWidget.setLayout(self.ezgambaLayout)
         return ezgambaWidget
@@ -164,6 +173,9 @@ class appWidget(QtWidgets.QWidget):
     def cointossLogic(self):
         result = self.coin_logic.singleToss()
         self.cointossOutput.setText(f"You toss a coin. It landed on {result}")
+
+    def betLogic(self):
+        return
 
     def showsimpleDice(self):
         self.diceappModes.setCurrentIndex(0)
