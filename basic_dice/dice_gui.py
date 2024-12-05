@@ -1,5 +1,5 @@
-# Last change is to add text box in Ezgamba that acceots bet.
-
+# 12/4/24 Last change is to add text box in Ezgamba that acceots bet.
+# 12/4/25 Added button to ezgamba layout and some more comments
 
 import sys
 import random
@@ -137,10 +137,12 @@ class appWidget(QtWidgets.QWidget):
         simplediceWidget.setLayout(self.simplediceLayout)
         return simplediceWidget
 
+    # mini-game
     def ezgambaMode(self):
         # EZ Gamba variables
         self.availableCash = 10000
         self.currentBet = 0
+
         intOnly = QtGui.QIntValidator(1, 9999)
 
         ezgambaWidget = QtWidgets.QWidget()
@@ -151,15 +153,34 @@ class appWidget(QtWidgets.QWidget):
         ezgambatitle.setSizePolicy(
             QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
         )
+
+        # label where results are displayed
+
+        self.gambaResults = QtWidgets.QLabel(" Insert Text here ")
+        self.gambaResults.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
+        self.gambaResults.setSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
+        )
+
+        # Input area for bet. Configured to only accept integers)
+
+        self.inputBet = QtWidgets.QLineEdit()
+
+        # responsible for limiting the input bet to numbers from 1 to 9999
+        self.inputBet.setValidator(intOnly)
+
+        # bet button
+        self.buttonBet = QtWidgets.QPushButton("Bet")
+
+        # appending of widgets to main layout
+
         self.ezgambaCash = QtWidgets.QLabel(str(self.availableCash))
         self.ezgambaLayout.addWidget(ezgambatitle)
         self.ezgambaLayout.addWidget(self.ezgambaCash)
-
-        self.inputBet = QtWidgets.QLineEdit()
-        self.inputBet.setValidator(intOnly)
         self.ezgambaLayout.addWidget(self.inputBet)
-
+        self.ezgambaLayout.addWidget(self.buttonBet)
         ezgambaWidget.setLayout(self.ezgambaLayout)
+
         return ezgambaWidget
 
     @QtCore.Slot()
