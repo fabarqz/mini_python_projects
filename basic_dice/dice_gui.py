@@ -154,6 +154,12 @@ class appWidget(QtWidgets.QWidget):
             QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
         )
 
+        self.ezgambaCash = QtWidgets.QLabel(str(self.availableCash))
+        self.ezgambaCash.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
+        self.ezgambaCash.setSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
+        )
+
         # label where results are displayed
 
         self.gambaResults = QtWidgets.QLabel(" Insert Text here ")
@@ -165,17 +171,22 @@ class appWidget(QtWidgets.QWidget):
         # Input area for bet. Configured to only accept integers)
 
         self.inputBet = QtWidgets.QLineEdit()
+        self.inputBet.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
+        self.inputBet.setSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
+        )
 
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
 
         # bet button
         self.buttonBet = QtWidgets.QPushButton("Bet")
-
+        self.buttonBet.clicked.connect(lambda: self.betLogic())
+        self.buttonBet.setMaximumWidth(500)
         # appending of widgets to main layout
 
-        self.ezgambaCash = QtWidgets.QLabel(str(self.availableCash))
         self.ezgambaLayout.addWidget(ezgambatitle)
+        self.ezgambaLayout.addWidget(self.gambaResults)
         self.ezgambaLayout.addWidget(self.ezgambaCash)
         self.ezgambaLayout.addWidget(self.inputBet)
         self.ezgambaLayout.addWidget(self.buttonBet)
@@ -196,7 +207,7 @@ class appWidget(QtWidgets.QWidget):
         self.cointossOutput.setText(f"You toss a coin. It landed on {result}")
 
     def betLogic(self):
-        return
+        self.gambaResults.setText("The text has been changed")
 
     def showsimpleDice(self):
         self.diceappModes.setCurrentIndex(0)
