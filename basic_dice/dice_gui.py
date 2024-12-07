@@ -1,5 +1,6 @@
 # 12/4/24 Last change is to add text box in Ezgamba that acceots bet.
-# 12/4/25 Added button to ezgamba layout and some more comments
+# 12/5/24 Added button to ezgamba layout and some more comments
+# 12/6/24 created test fucntion fo buttonbet to change text of results label
 
 import sys
 import random
@@ -179,17 +180,26 @@ class appWidget(QtWidgets.QWidget):
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
 
-        # bet button
-        self.buttonBet = QtWidgets.QPushButton("Bet")
-        self.buttonBet.clicked.connect(lambda: self.betLogic())
-        self.buttonBet.setMaximumWidth(500)
+        # bet buttons
+        self.betHeads = QtWidgets.QPushButton("Heads")
+        self.betHeads.clicked.connect(lambda: self.betLogic())
+        self.betHeads.setMaximumWidth(500)
+        self.betHeads.move(50, 100)
+        self.betTails = QtWidgets.QPushButton("Tails")
+        self.betTails.clicked.connect(lambda: self.betLogic())
+        self.betTails.setMaximumWidth(500)
+        self.betTails.move(200, 100)
+
         # appending of widgets to main layout
 
         self.ezgambaLayout.addWidget(ezgambatitle)
         self.ezgambaLayout.addWidget(self.gambaResults)
         self.ezgambaLayout.addWidget(self.ezgambaCash)
         self.ezgambaLayout.addWidget(self.inputBet)
-        self.ezgambaLayout.addWidget(self.buttonBet)
+
+        self.ezgambaLayout.addWidget(self.betHeads)
+        self.ezgambaLayout.addWidget(self.betTails)
+
         ezgambaWidget.setLayout(self.ezgambaLayout)
 
         return ezgambaWidget
