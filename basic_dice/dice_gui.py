@@ -179,14 +179,15 @@ class appWidget(QtWidgets.QWidget):
 
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
-
+        getBet = self.inputBet.text()
+        self.currentBet = float(getBet)
         # bet buttons
         self.betHeads = QtWidgets.QPushButton("Heads")
-        self.betHeads.clicked.connect(lambda: self.betLogic())
+        self.betHeads.clicked.connect(lambda: self.betlogic_heads())
         self.betHeads.setMaximumWidth(500)
         self.betHeads.move(50, 100)
         self.betTails = QtWidgets.QPushButton("Tails")
-        self.betTails.clicked.connect(lambda: self.betLogic())
+        self.betTails.clicked.connect(lambda: self.betlogic_tails())
         self.betTails.setMaximumWidth(500)
         self.betTails.move(200, 100)
 
@@ -216,8 +217,16 @@ class appWidget(QtWidgets.QWidget):
         result = self.coin_logic.singleToss()
         self.cointossOutput.setText(f"You toss a coin. It landed on {result}")
 
-    def betLogic(self):
-        self.gambaResults.setText("The text has been changed")
+    def betlogic_tails(self):
+        self.tossResult = self.coin_logic.singleToss()
+
+        if self.tossResult == "Heads":
+            self.gambaResults.setText(f"The result is {self.tossResult}. You lost")
+            self.availableCash = self.availableCash - self.inputBet
+
+    def betlogic_heads(self):
+        self.tossResult = self.coin_logic.singleToss()
+        self.gambaResults.setText(f"The result is {self.tossResult}")
 
     def showsimpleDice(self):
         self.diceappModes.setCurrentIndex(0)
