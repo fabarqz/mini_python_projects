@@ -179,10 +179,8 @@ class appWidget(QtWidgets.QWidget):
 
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
-        getBet = self.inputBet.text()
-        self.currentBet = float(getBet)
         # bet buttons
-        self.betHeads = QtWidgets.QPushButton("Heads")
+        self.betHeads = QtWidgets.QPushButton("He ads")
         self.betHeads.clicked.connect(lambda: self.betlogic_heads())
         self.betHeads.setMaximumWidth(500)
         self.betHeads.move(50, 100)
@@ -219,10 +217,13 @@ class appWidget(QtWidgets.QWidget):
 
     def betlogic_tails(self):
         self.tossResult = self.coin_logic.singleToss()
-
+        self.currentBet = int(self.inputBet.text())
         if self.tossResult == "Heads":
             self.gambaResults.setText(f"The result is {self.tossResult}. You lost")
-            self.availableCash = self.availableCash - self.inputBet
+            self.availableCash = self.availableCash - int(self.currentBet)
+        else:
+            self.availableCash = self.availableCash + int(self.currentBet)
+        self.ezgambaCash.setText(str(self.availableCash))
 
     def betlogic_heads(self):
         self.tossResult = self.coin_logic.singleToss()
