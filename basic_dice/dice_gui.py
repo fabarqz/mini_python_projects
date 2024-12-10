@@ -1,6 +1,7 @@
 # 12/4/24 Last change is to add text box in Ezgamba that acceots bet.
 # 12/5/24 Added button to ezgamba layout and some more comments
 # 12/6/24 created test fucntion fo buttonbet to change text of results label
+# 12/9/24 working on betlogic
 
 import sys
 import random
@@ -141,7 +142,7 @@ class appWidget(QtWidgets.QWidget):
     # mini-game
     def ezgambaMode(self):
         # EZ Gamba variables
-        self.availableCash = 10000
+        self.availableCash = 0
         self.currentBet = 0
 
         intOnly = QtGui.QIntValidator(1, 9999)
@@ -180,7 +181,7 @@ class appWidget(QtWidgets.QWidget):
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
         # bet buttons
-        self.betHeads = QtWidgets.QPushButton("He ads")
+        self.betHeads = QtWidgets.QPushButton("Heads")
         self.betHeads.clicked.connect(lambda: self.betlogic_heads())
         self.betHeads.setMaximumWidth(500)
         self.betHeads.move(50, 100)
@@ -216,14 +217,24 @@ class appWidget(QtWidgets.QWidget):
         self.cointossOutput.setText(f"You toss a coin. It landed on {result}")
 
     def betlogic_tails(self):
-        self.tossResult = self.coin_logic.singleToss()
+
+        # check if player can still bet:
         self.currentBet = int(self.inputBet.text())
-        if self.tossResult == "Heads":
-            self.gambaResults.setText(f"The result is {self.tossResult}. You lost")
-            self.availableCash = self.availableCash - int(self.currentBet)
+        if self.availableCash < 0:
+            self.gambaResults.setText("You have 0 remaining cash. Game Over!")
+        elif self.availableCash < self.currentBet:
+            self.gambaResults.setText(
+                "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
+            )
         else:
-            self.availableCash = self.availableCash + int(self.currentBet)
-        self.ezgambaCash.setText(str(self.availableCash))
+            self.tossResult = self.coin_logic.singleToss()
+
+            if self.tossResult == "Heads":
+                self.gambaResults.setText(f"The result is {self.tossResult}. You lost")
+                self.availableCash = self.availableCash - int(self.currentBet)
+            else:
+                self.availableCash = self.availableCash + int(self.currentBet)
+            self.ezgambaCash.setText(str(self.availableCash))
 
     def betlogic_heads(self):
         self.tossResult = self.coin_logic.singleToss()
