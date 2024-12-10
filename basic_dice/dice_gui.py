@@ -142,7 +142,7 @@ class appWidget(QtWidgets.QWidget):
     # mini-game
     def ezgambaMode(self):
         # EZ Gamba variables
-        self.availableCash = 0
+        self.availableCash = 10000
         self.currentBet = 0
 
         intOnly = QtGui.QIntValidator(1, 9999)
@@ -177,7 +177,7 @@ class appWidget(QtWidgets.QWidget):
         self.inputBet.setSizePolicy(
             QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Maximum
         )
-
+        self.inputBet.setText(str(self.currentBet))
         # responsible for limiting the input bet to numbers from 1 to 9999
         self.inputBet.setValidator(intOnly)
         # bet buttons
@@ -220,25 +220,44 @@ class appWidget(QtWidgets.QWidget):
 
         # check if player can still bet:
         self.currentBet = int(self.inputBet.text())
-        if self.availableCash < 0:
-            self.gambaResults.setText("You have 0 remaining cash. Game Over!")
-        elif self.availableCash < self.currentBet:
-            self.gambaResults.setText(
-                "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
-            )
+        if self.availableCash < 0 or self.availableCash < self.currentBet:
+            if self.availableCash == 0 or self.availableCash < 0:
+                self.gambaResults.setText("You have 0 remaining cash. Game Over!")
+            elif self.availableCash < self.currentBet:
+                self.gambaResults.setText(
+                    "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
+                )
         else:
             self.tossResult = self.coin_logic.singleToss()
 
             if self.tossResult == "Heads":
-                self.gambaResults.setText(f"The result is {self.tossResult}. You lost")
+                self.gambaResults.setText(f"The result is {self.tossResult}. You lost!")
                 self.availableCash = self.availableCash - int(self.currentBet)
             else:
+                self.gambaResults.setText(f"The result is Tails. You won!")
                 self.availableCash = self.availableCash + int(self.currentBet)
             self.ezgambaCash.setText(str(self.availableCash))
 
     def betlogic_heads(self):
-        self.tossResult = self.coin_logic.singleToss()
-        self.gambaResults.setText(f"The result is {self.tossResult}")
+        # check if player can still bet:
+        self.currentBet = int(self.inputBet.text())
+        if self.availableCash < 0 or self.availableCash < self.currentBet:
+            if self.availableCash == 0 or self.availableCash < 0:
+                self.gambaResults.setText("You have 0 remaining cash. Game Over!")
+            elif self.availableCash < self.currentBet:
+                self.gambaResults.setText(
+                    "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
+                )
+        else:
+            self.tossResult = self.coin_logic.singleToss()
+
+            if self.tossResult == "Tails":
+                self.gambaResults.setText(f"The result is {self.tossResult}. You lost!")
+                self.availableCash = self.availableCash - int(self.currentBet)
+            else:
+                self.gambaResults.setText(f"The result is Heads. You won!")
+                self.availableCash = self.availableCash + int(self.currentBet)
+            self.ezgambaCash.setText(str(self.availableCash))
 
     def showsimpleDice(self):
         self.diceappModes.setCurrentIndex(0)
