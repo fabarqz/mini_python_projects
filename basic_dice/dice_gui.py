@@ -190,6 +190,9 @@ class appWidget(QtWidgets.QWidget):
         self.betTails.setMaximumWidth(500)
         self.betTails.move(200, 100)
 
+        self.resetGame = QtWidgets.QPushButton("Reset")
+        self.resetGame.hide()
+
         # appending of widgets to main layout
 
         self.ezgambaLayout.addWidget(ezgambatitle)
@@ -199,6 +202,7 @@ class appWidget(QtWidgets.QWidget):
 
         self.ezgambaLayout.addWidget(self.betHeads)
         self.ezgambaLayout.addWidget(self.betTails)
+        self.ezgambaLayout.addWidget(self.resetGame)
 
         ezgambaWidget.setLayout(self.ezgambaLayout)
 
