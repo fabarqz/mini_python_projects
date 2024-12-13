@@ -142,7 +142,7 @@ class appWidget(QtWidgets.QWidget):
     # mini-game
     def ezgambaMode(self):
         # EZ Gamba variables
-        self.availableCash = 10000
+        self.availableCash = 100
         self.currentBet = 0
 
         intOnly = QtGui.QIntValidator(1, 9999)
@@ -227,6 +227,7 @@ class appWidget(QtWidgets.QWidget):
         if self.availableCash < 0 or self.availableCash < self.currentBet:
             if self.availableCash == 0 or self.availableCash < 0:
                 self.gambaResults.setText("You have 0 remaining cash. Game Over!")
+                self.resetGame.show()
             elif self.availableCash < self.currentBet:
                 self.gambaResults.setText(
                     "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
@@ -248,6 +249,7 @@ class appWidget(QtWidgets.QWidget):
         if self.availableCash < 0 or self.availableCash < self.currentBet:
             if self.availableCash == 0 or self.availableCash < 0:
                 self.gambaResults.setText("You have 0 remaining cash. Game Over!")
+                self.betTails.setEnabled(False)
             elif self.availableCash < self.currentBet:
                 self.gambaResults.setText(
                     "Your cannot make a bet higher than your remaining cash. Lower the amount then try again."
