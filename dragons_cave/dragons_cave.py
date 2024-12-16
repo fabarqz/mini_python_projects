@@ -1,5 +1,5 @@
 from os import system
-from sys import stdout, stdin
+from sys import stdout, stdin, exit
 from time import sleep
 from pynput import keyboard as board
 import keyboard
@@ -80,6 +80,7 @@ class Game:
                 "line_c": "The moment you step into the chamber the dark interior suddenly got bright as a ball of fire flies towards you. You were unable to dodge thus got incinerated to ashes\n",
                 "line_d": "Alas you were killed by a ceiling made of spikes fall on top you\n",
                 "line_e": "Alas before you could get inside the chamber, a dragon sentry pops out of the dark with it maws wide open devouring you\n",
+                "line_f": "Alas you succumbed to death by poisoning caused by an odorless toxic gas released from a trap you unknowingly triggered earlier",
             },
             "pass_safely": {
                 "line_a": "While the foreboding air is there, this room is oddly devoid of traps nor is there a sentry patrolling. Nevertheless, you maintain your guard and carefully walk towards the exit.\n",
@@ -165,7 +166,7 @@ class Game:
                 self.clear_keyboard()
                 self.print_line("Alas. You picked no. Closing app")
                 sleep(0.5)
-                break
+                exit()
 
     def print_game_text(self, key):
         for sub_key, value in self.game_text[key].items():
