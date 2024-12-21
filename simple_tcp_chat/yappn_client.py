@@ -11,6 +11,11 @@ def receive():
     while True:
         try:
             message = client.recv(1024).decode("ascii")
+            if message == "NICK":
+                client.send(nickname.encode("ascii"))
+            else:
+                print(message)
         except:
             print("An error occured in sending the message")
             client.close()
+            break
