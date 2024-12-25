@@ -3,6 +3,9 @@ from PySide6 import QtCore, QtWidgets, QtGui
 import threading
 import socket
 
+local_host = "127.0.0.1"
+port = 65469
+
 
 class appWidget(QtWidgets.QWidget):
     def __init__(self):
