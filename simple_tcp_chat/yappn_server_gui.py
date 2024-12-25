@@ -6,6 +6,13 @@ import socket
 local_host = "127.0.0.1"
 port = 65469
 
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((local_host, port))
+server.listen()
+
+clients = []
+nickname = []
+
 
 class appWidget(QtWidgets.QWidget):
     def __init__(self):
