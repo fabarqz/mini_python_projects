@@ -11,7 +11,27 @@ server.bind((local_host, port))
 server.listen()
 
 clients = []
-nickname = []
+nicknames = []
+
+
+def broadcast(message):
+    for client in clients:
+        client.send(message)
+
+
+def handle(client):
+    while True:
+        try:
+            message = client.recv(1024)
+            broadcast(message)
+        except:
+            index = clients.index(client)
+            clients.remove(client)
+            client.close()
+            nickname = nicknames[index]
+            broadcast("{} left!".format(nickname).encode("ascii"))
+            nicknames.remove(nickname)
+            break
 
 
 class appWidget(QtWidgets.QWidget):
