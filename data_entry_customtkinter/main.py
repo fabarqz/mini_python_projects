@@ -8,12 +8,12 @@ root.geometry("800x600")
 root.title("Data Entry Form")
 
 frame = customtkinter.CTkFrame(root)
+
+
+user_info_frame = customtkinter.CTkLabel(master=frame, text="User Information")
+user_info_frame.grid(row=0, column=0)
+
+first_name_label = customtkinter.CTkLabel(master=frame, text="First Name")
+user_info_frame.grid(row=0, column=0)
 frame.pack()
-
-user_info_frame = customtkinter.CTkLabel(master=frame, text="User Inframe")
-user_info_frame.grid(row=0, colunmn=0)
-
-first_name_label = customtkinter.CTkFrame(user_info_frame, text="First Name")
-
-
 root.mainloop()
