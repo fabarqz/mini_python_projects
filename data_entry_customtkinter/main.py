@@ -21,4 +21,7 @@ last_name_label.grid(row=0, column=1, padx=10, pady=(0, 10))
 
 first_name_entry = ctk.CTkEntry(frame)
 first_name_entry.grid(row=1, column=0, padx=10, pady=(0, 10))
+
+last_name_entry = ctk.CTkEntry(frame)
+last_name_entry.grid(row=1, column=1, padx=10, pady=(0, 10))
 root.mainloop()
