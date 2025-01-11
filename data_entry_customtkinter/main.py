@@ -57,9 +57,16 @@ title_combobox.grid(row=1, column=0, padx=10, pady=(0, 10))
 
 age_label = ctk.CTkLabel(frame, text="Age")
 age_label.grid(row=0, column=4, padx=10, pady=(0, 10))
-age_spinbox = ctk.CTkEntry(
+age_entry = ctk.CTkEntry(
     frame, width=50, validate="key", validatecommand=(validate_command, "%d", "%P")
 )
-age_spinbox.grid(row=1, column=4, padx=10, pady=(0, 10))
+age_entry.grid(row=1, column=4, padx=10, pady=(0, 10))
+
+frameB_label = ctk.CTkLabel(root, text="Address Information")
+frameB_label.grid(row=2, column=0, padx=20, pady=(20, 0))
+
+frameB = ctk.CTkFrame(root, width=200, height=150, corner_radius=10)
+frameB.grid(row=3, column=0, padx=10, pady=(0, 10))
+
 
 root.mainloop()
