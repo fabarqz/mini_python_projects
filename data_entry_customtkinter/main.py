@@ -68,5 +68,16 @@ frameB_label.grid(row=2, column=0, padx=20, pady=(20, 0))
 frameB = ctk.CTkFrame(root, width=200, height=150, corner_radius=10)
 frameB.grid(row=3, column=0, padx=10, pady=(0, 10))
 
+addressHome_label = ctk.CTkLabel(frameB, text="Home Address")
+addressHome_label.grid(row=0, column=0, padx=10, pady=(0, 10))
+
+addressHome_entry = ctk.CTkEntry(frameB, width=700)
+addressHome_entry.grid(row=1, column=0, padx=10, pady=(0, 10))
+
+addressCurrent_label = ctk.CTkLabel(frameB, text="Current Address")
+addressCurrent_label.grid(row=2, column=0, padx=10, pady=(0, 10))
+
+addressCurrent_entry = ctk.CTkEntry(frameB, width=700)
+addressCurrent_entry.grid(row=3, column=0, padx=10, pady=(0, 10))
 
 root.mainloop()
