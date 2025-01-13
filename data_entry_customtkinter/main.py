@@ -77,6 +77,12 @@ addressHome_entry.grid(row=1, column=0, padx=10, pady=(0, 10))
 addressCurrent_label = ctk.CTkLabel(frameB, text="Current Address")
 addressCurrent_label.grid(row=2, column=0, padx=10, pady=(0, 10))
 
+addressCurrent_check = ctk.CTkCheckBox(frameB)
+addressCurrent_check.grid(row=2, column=1, padx=10, pady=(0, 10))
+
+addressCurrent_checkLabel = ctk.CTkLabel(frameB, text="Same as Home Address")
+addressCurrent_check.grid(row=2, column=2, padx=10, pady=(0, 10))
+
 addressCurrent_entry = ctk.CTkEntry(frameB, width=700)
 addressCurrent_entry.grid(row=3, column=0, padx=10, pady=(0, 10))
 
