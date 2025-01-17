@@ -25,6 +25,9 @@ middle_name_label.grid(row=0, column=2)
 suffix_label = tk.Label(basic_info_frame, text="Suffix")
 suffix_label.grid(row=0, column=3)
 
+age_label = tk.Label(basic_info_frame, text="Age")
+age_label.grid(row=0, column=4)
+
 last_name_entry = tk.Entry(basic_info_frame)
 last_name_entry.grid(row=1, column=0)
 
@@ -38,6 +41,11 @@ suffixes = ["", "Sr.", "Jr", "I", "II", "III", "IV"]
 
 suffix_entry = ttk.Combobox(basic_info_frame, width=4, values=suffixes)
 suffix_entry.grid(row=1, column=3)
+
+
+age_spinbox = ttk.Spinbox(basic_info_frame, from_=1, to=100, width=5)
+age_spinbox.grid(row=1, column=4)
+
 
 dob_label = tk.Label(basic_info_frame, text="Date of Birth")
 dob_label.grid(row=2, column=0)
