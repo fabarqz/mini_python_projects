@@ -52,6 +52,12 @@ dob_label = tk.Label(basic_info_frame, text="Date of Birth")
 dob_label.grid(row=2, column=0)
 
 dob_entry = dt(basic_info_frame, width=16)
-dob_entry.grid(row=30, column=0)
+dob_entry.grid(row=3, column=0)
+
+natl_label = tk.Label(basic_info_frame, text="Nationality")
+natl_label.grid(row=2, column=1)
+
+natl_entry = ttk.Combobox(basic_info_frame, width=17, values=natl)
+natl_entry.grid(row=3, column=1)
 
 window.mainloop()
