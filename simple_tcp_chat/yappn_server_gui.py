@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from PySide6 import QtCore, QtWidgets, QtGui
 import threading
 import socket
@@ -63,6 +64,13 @@ class appWidget(QtWidgets.QWidget):
         self.startServer = QtWidgets.QPushButton("Start Server")
         self.startServer.clicked.connect(self.start_server)
         self.mainLayout.addWidget(self.startServer)
+        self.startClient_one = QtWidgets.QPushButton("Start Client 1")
+        self.startClient_one.clicked.connect(self.run_client)
+        self.mainLayout.addWidget(self.startClient_one)
+        self.startClient_two = QtWidgets.QPushButton("Start Client 2")
+        self.startClient_two.clicked.connect(self.run_client)
+        self.mainLayout.addWidget(self.startClient_two)
+
         self.setLayout(self.mainLayout)
 
     def start_server(self):
@@ -70,6 +78,13 @@ class appWidget(QtWidgets.QWidget):
         self.server_thread.daemon = True
         self.server_thread.start()
         self.status_label.setText("Server is running")
+
+    def run_client(self):
+        try:
+            command = 'start cmd /k "cd "simple_tcp_chat" & python yappn_client.py"'
+            subprocess.run(command, shell=True)
+        except Exception as e:
+            print(f"An error occuerd:{e}")
 
 
 if __name__ == "__main__":
