@@ -60,4 +60,13 @@ natl_label.grid(row=2, column=1)
 natl_entry = ttk.Combobox(basic_info_frame, width=17, values=natl)
 natl_entry.grid(row=3, column=1)
 
+for widgets in basic_info_frame.winfo_children():
+    widgets.grid_configure(padx=5, pady=5)
+
+registration_info_frame = tk.LabelFrame(frame, text="Registration Information")
+registration_info_frame.grid(row=1, column=0, sticky="news", padx=20, pady=20)
+
+registered_label = tk.Label(registration_info_frame, text="Registration Status")
+registered_label.grid(row=0, column=0)
+
 window.mainloop()
